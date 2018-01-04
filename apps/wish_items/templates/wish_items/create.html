@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <title>Create Item</title>
+    <link rel="stylesheet" type="text/css" href="../static/wish_items/style.css">
+
+</head>
+<body>
+        <h3> Hello again {{ user.name }}!</h3>
+        <p><a href='/dashboard'>Home</a> | <a href='/logout'>Logout</a></p>
+
+        <h2>Create a New Wish List Item!</h2>
+
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+                </ul>
+        {% endif %}
+        <form action='/create_item' method='POST'>
+            {% csrf_token %}
+
+            ￼￼￼<input type ="hidden", name='user_id', value="{{ user.id }}">
+            <p>Item/Product: <input type='text' name='item_name'></p>
+            <p><input type='submit' value="Add"></p>
+        </form>    
+
+</body>
+</html>    

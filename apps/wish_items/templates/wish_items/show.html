@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <title>{{ item.item_name }} </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{%  static 'wish_items/css/style.css' %}">
+
+</head>
+<body>
+    
+    <h2> {{ item.item_name }} </h2>
+
+    <p><a href = '/logout'>Logout</a> | <a href = '/dashboard'>Home</a></p>
+
+    <h4>Users who added this item under their wish list: </h4>
+
+    {% for user in item.fav_by.all %}
+        <p>{{ user.name }}</p>
+    {% endfor %}
+    
+</body>
+
+</html>

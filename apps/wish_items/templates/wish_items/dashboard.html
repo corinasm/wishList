@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <title>Wish List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{%  static 'wish_items/css/style.css' %}">
+
+</head>
+<body>
+    
+    <h2> Hello {{ user.name }}!</h2>
+
+    <p><a href = '/logout'>Logout</a></p>
+    <p><a href = '/create'>Add Item</a></p>
+    
+    <h3>Your Wish List</h3>
+    <table>
+        <tr>
+            <th>Item</th><th>Added by</th><th>Date Added</th><th>Action</th>
+        </tr>
+
+        {% for item in favoriteitems %}
+        <tr>
+            <td><a href = '/wish_items/{{ item.id }}'>{{ item.item_name }}</a></td>
+            <td>{{ item.wished_by.name }}</td>
+            <td>{{ item.created_at }}</td>
+
+            {% if user.id == item.wished_by.id %}
+                <td> <a href='/delete_item/{{ item.id }}'>Delete</a></td>
+            {% else %}    
+                <td> <a href='/remove_item/{{ item.id }}'>Remove from My Wish List</a></td>
+            {% endif %}    
+        </tr>
+        {% endfor %}
+        
+        <!-- % for item in my_wish_list %
+        <tr>
+            <td><a href = '/wish_items/{{ item.id }}'>{{ item.item_name }}</a></td>
+            <td>{{ item.wished_by.name }}</td>
+            <td>{{ item.created_at }}<td>
+            <a href='/delete_item/{{ item.id }}'>Delete</a></td>
+        </tr>
+        % endfor %     -->
+    
+
+    </table>
+
+    <h3>Other Users' Wish List </h3>
+    <table>
+        <tr>
+            <th>Item</th><th>Added by</th><th>Date Added</th><th>Action</th>
+        </tr>
+        {% for item in others_wish_list %}
+        <tr>
+            <td><a href = '/wish_items/{{ item.id }}'>{{ item.item_name }}</a></td>
+            <td>{{ item.wished_by.name }}</td>
+            <td>{{ item.created_at }}<td>
+            <a href='/add_item/{{ item.id }}'>Add to My Wish List</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+ </body>
+ </html>   

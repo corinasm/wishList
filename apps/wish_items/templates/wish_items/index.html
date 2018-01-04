@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <title>Login/Registration My Wish List</title>
+    <link rel="stylesheet" type="text/css" href="../static/wishList/style.css">
+ 
+</head>
+
+<body>
+    <h1>Welcome!</h1>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+                </ul>
+    {% endif %}
+
+    <h2>Register</h2>
+
+    <form action='/registration' method='POST'>
+    {% csrf_token %}
+        <p>Name: <input type='text' name='name'></p>
+        <p>Username: <input type='text' name='username'></p>
+        <p>Password: <input type='password' name='password'></p>
+        <p>*Password should be at least 8 characters</p>
+        <p>Confirm Password: <input type='password' name='cpassword'></p>
+        <p>Date Hired:<input type='date' name='hire_date'></p>
+        <p><input type='submit' value='Register'></p>
+    </form> 
+
+
+    <h2>Login</h2>  
+
+    <form action='/login' method='POST'>
+    {% csrf_token %}
+        <p>Username: <input type='text' name='username'></p>
+        <p>Password:<input type='password' name='password'></p>
+        <p><input type='submit' value='Login'></p>
+    </form> 
+
+</body>
+</html>    
